@@ -3,8 +3,8 @@ from turtle import *
 speed(0)
 color("seagreen")
 
-loops = 4
+sides = 4
 
-for i in range(loops):
+for i in range(sides):
   forward(90)
-  left(90)
+  left(360/sides)
