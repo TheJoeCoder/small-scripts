@@ -1,10 +1,10 @@
 from turtle import *
+from math import *
 
-speed(0)
 color("seagreen")
 
-sides = 4
+sides = 69
 
 for i in range(sides):
-  forward(90)
+  forward(floor(360/sides/1.02))
   left(360/sides)
