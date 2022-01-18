@@ -52,7 +52,27 @@ class Room():
             room = self.linkedrooms[direction]
             print("The " + room.get_name() + " is " + direction.name.lower())
         print("----------")
+    
+    def move(self, direction: Direction):
+        if direction in self.linkedrooms:
+            return self.linkedrooms[direction]
+        else:
+            print("You can't move that way!")
+            return self
 
+class Item:
+    def __init__(self, name: str) -> None:
+        self.name = name
+        self.description = "No description given."
+    def get_name(self) -> str:
+        return self.name
+    def set_name(self, name: str) -> None:
+        self.name = name
+    def get_description(self) -> str:
+        return self.description
+    def set_description(self, description: str) -> None:
+        self.description = description
+    
 
 def link_bidirectional(first: Room, second: Room, direction: Direction):
     first.link_room(direction, second)
@@ -70,6 +90,13 @@ ballroom.set_description("There are people dancing.")
 link_bidirectional(kitchen, diningroom, Direction.SOUTH) # dining room is south of kitchen
 link_bidirectional(diningroom, ballroom, Direction.WEST) # ballroom is west of dining room
 
-kitchen.print_details()
-diningroom.print_details()
-ballroom.print_details()
+current_room = kitchen          
+
+while True:
+    print("\n")
+    current_room.print_details()
+    command = input("> ")
+    try:
+        current_room = current_room.move(Direction(command.upper()))
+    except:
+        print("Invalid command")
