@@ -60,7 +60,7 @@ class Room():
             print("You can't move that way!")
             return self
 
-class Item:
+class Item():
     def __init__(self, name: str) -> None:
         self.name = name
         self.description = "No description given."
@@ -73,7 +73,7 @@ class Item:
     def set_description(self, description: str) -> None:
         self.description = description
 
-class Character:
+class Character():
     def __init__(self, char_name, char_description) -> None:
         self.name = char_name
         self.description = char_description
@@ -91,6 +91,22 @@ class Character:
         return True
     def set_conversation(self, conversation: str) -> None:
         self.conversation = conversation
+
+class Enemy(Character):
+    def __init__(self, char_name, char_description) -> None:
+        super().__init__(char_name, char_description)
+        self.weakness = None
+    def get_weakness(self) -> Item:
+        return self.weakness
+    def set_weakness(self, weakness: Item) -> None:
+        self.weakness = weakness
+    def fight(self, combat_item) -> bool:
+        if combat_item == self.weakness:
+            print("You fend " + self.name + " off with the " + combat_item.get_name())
+            return True
+        else:
+            print(self.name + " crushes you, puny adventurer.")
+            return False
 
 def link_bidirectional(first: Room, second: Room, direction: Direction):
     first.link_room(direction, second)
@@ -110,7 +126,7 @@ link_bidirectional(diningroom, ballroom, Direction.WEST) # ballroom is west of d
 
 current_room = kitchen
 
-dave = Character("Dave", "A smelly zombie")
+dave = Enemy("Dave", "A smelly zombie")
 dave.set_conversation("Hallo! I be Dave!")
 
 dave.describe()
