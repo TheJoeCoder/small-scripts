@@ -126,11 +126,27 @@ link_bidirectional(diningroom, ballroom, Direction.WEST) # ballroom is west of d
 
 current_room = kitchen
 
+cheese = Item("Cheese")
+melon = Item("Melon")
+nothing = Item("Nothing")
+
 dave = Enemy("Dave", "A smelly zombie")
 dave.set_conversation("Hallo! I be Dave!")
+dave.set_weakness(cheese)
 
 dave.describe()
-dave.talk()
+print("Fight with Cheese (1) or Melon (2)?")
+item = input("> ")
+
+fight_item = nothing
+if item == "1":
+    fight_item = cheese
+elif item == "2":
+    fight_item = melon
+
+dave.fight(fight_item)
+
+exit()
 
 while True:
     print("\n")
