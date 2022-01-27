@@ -79,7 +79,7 @@ class Character:
         self.description = char_description
         self.conversation = None
     def describe(self) -> None:
-        print(self.name + "is here!")
+        print(self.name + " is here!")
         print(self.description)
     def talk(self) -> None:
         if self.conversation is not None:
@@ -89,6 +89,8 @@ class Character:
     def fight(self, combat_item: Item) -> bool:
         print(self.name + " doesn't want to fight with you.")
         return True
+    def set_conversation(self, conversation: str) -> None:
+        self.conversation = conversation
 
 def link_bidirectional(first: Room, second: Room, direction: Direction):
     first.link_room(direction, second)
@@ -106,11 +108,7 @@ ballroom.set_description("There are people dancing.")
 link_bidirectional(kitchen, diningroom, Direction.SOUTH) # dining room is south of kitchen
 link_bidirectional(diningroom, ballroom, Direction.WEST) # ballroom is west of dining room
 
-current_room = kitchen          
-
-dave = Character("Dave", "A smelly zombie")
-dave.describe()
-exit()
+current_room = kitchen
 
 while True:
     print("\n")
