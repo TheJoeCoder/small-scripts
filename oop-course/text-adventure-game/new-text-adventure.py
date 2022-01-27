@@ -72,7 +72,23 @@ class Item:
         return self.description
     def set_description(self, description: str) -> None:
         self.description = description
-    
+
+class Character:
+    def __init__(self, char_name, char_description) -> None:
+        self.name = char_name
+        self.description = char_description
+        self.conversation = None
+    def describe(self) -> None:
+        print(self.name + "is here!")
+        print(self.description)
+    def talk(self) -> None:
+        if self.conversation is not None:
+            print("[" + self.name + "]: " + self.conversation)
+        else:
+            print(self.name + " doesn't want to talk to you.")
+    def fight(self, combat_item: Item) -> bool:
+        print(self.name + " doesn't want to fight with you.")
+        return True
 
 def link_bidirectional(first: Room, second: Room, direction: Direction):
     first.link_room(direction, second)
