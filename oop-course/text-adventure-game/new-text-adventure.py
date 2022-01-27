@@ -110,6 +110,12 @@ link_bidirectional(diningroom, ballroom, Direction.WEST) # ballroom is west of d
 
 current_room = kitchen
 
+dave = Character("Dave", "A smelly zombie")
+dave.set_conversation("Hallo! I be Dave!")
+
+dave.describe()
+dave.talk()
+
 while True:
     print("\n")
     current_room.print_details()
